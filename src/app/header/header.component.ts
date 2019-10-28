@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  @Output() loadPageEvent = new EventEmitter<{ loadPage: string }>();
+
   constructor() { }
 
   ngOnInit() {
+    this.loadPageEvent.emit({ loadPage: 'recipes' });
+    console.log('Event emitted: loadPage: \'recipes\'');
+  }
+
+  loadPage(event: { loadPage: string }) {
+    this.loadPageEvent.emit(event);
   }
 
 }

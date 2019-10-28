@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'reipekart';
+  pageToLoad = 'recipes';
+
+  loadPage(event: { loadPage: string }) {
+    if (event.loadPage === 'recipes') {
+      this.pageToLoad = 'recipes';
+    } else {
+      this.pageToLoad = 'shopping-list';
+    }
+  }
 }
