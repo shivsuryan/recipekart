@@ -14,8 +14,8 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li (click)="loadPage({loadPage: 'recipes'})" [class]><a href="#">Recipes </a></li>
-          <li><a href="#" (click)="loadPage({loadPage: 'shoppinglist'})">ShoppingList</a></li>
+          <li [class]><a routerLink="recipes">Recipes </a></li>
+          <li><a routerLink="shoppinglist" >ShoppingList</a></li>
         </ul>
         
         <ul class="nav navbar-nav navbar-right">
