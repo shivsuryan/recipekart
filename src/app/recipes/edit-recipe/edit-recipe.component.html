@@ -1,1 +1,13 @@
-<p>edit-recipe works!</p>
+<form>
+    <div class="form-group">
+        <label for="recipeName">Name</label>
+        <input type="text" class="form-control" id="recipeName" [value]="recipe.name">
+        <br>
+        <label for="recipeDescription">Description</label>
+        <textarea class="form-control" rows="5" id="recipeDescription"[placeholder]="recipe.description" ([ngModel])="recipe.description"></textarea>
+        <br>
+        <label for="recipeURL">Image</label>
+        <input type="url" class="form-control" id="recipeURL" [placeholder]="recipe.imageUrl" ([ngModel])="recipe.imageUrl">
+    </div>
+    <button type="submit" class="btn btn-default" (click)="updateRecipe()">Submit</button>
+</form>
