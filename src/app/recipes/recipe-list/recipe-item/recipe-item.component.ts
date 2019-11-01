@@ -13,8 +13,8 @@ export class RecipeItemComponent implements OnInit {
   @Input() recipe: Recipe;
 
   onClick() {
-    //this.recipeService.recipeSelectedEvent.emit(this.recipe);
-    this.router.navigate(['/recipes', this.recipe.id]);
+    // //this.recipeService.recipeSelectedEvent.emit(this.recipe);
+    // this.router.navigate(['/recipes', this.recipe.id]);
   }
 
   constructor(private recipeService: RecipeService, private router: Router) { }
