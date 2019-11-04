@@ -1,21 +1,35 @@
 <div class="row">
     <div class="col-xs-12">
-        <form action="#">
+        <form (ngSubmit)="onAddItem(f)" #f="ngForm">
             <div class="row">
                 <div class="col-xs-5">
                     <label for="nameLabel">Name</label>
-                    <input type="text" class="form-control" name="name" [(ngModel)]= "name" id="nameLabel">
+                    <input 
+                    type="text" 
+                    class="form-control" 
+                    id="nameLabel"
+                    name="name" 
+                    ngModel
+                    >
                 </div>
                 <div class="col-xs-2">
                     <label for="amountLabel">Amount</label>
-                    <input type="number" class="form-control" name="amount" [(ngModel)]= "amount" id="amountLabel">
+                    <input 
+                    type="number" 
+                    class="form-control" 
+                    id="amountLabel"
+                    name="amount" 
+                    ngModel 
+                    >
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col-xs-12" style=".btn-space ">
-                    <button class="btn btn-success btn-space" type="submit" (click)="onAdd()">Add</button><span style="display:inline-block; width: 3px;"></span>
-                    <button class="btn btn-danger btn-space" type="button">Delete</button><span style="display:inline-block; width: 3px;"></span>
+                    <button class="btn btn-success btn-space" type="submit">Add</button><span
+                        style="display:inline-block; width: 3px;"></span>
+                    <button class="btn btn-danger btn-space" type="button">Delete</button><span
+                        style="display:inline-block; width: 3px;"></span>
                     <button class="btn btn-primary btn-space " type="button">Clear</button>
                 </div>
             </div>
