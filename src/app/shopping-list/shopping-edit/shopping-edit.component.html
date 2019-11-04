@@ -10,6 +10,7 @@
                     id="nameLabel"
                     name="name" 
                     ngModel
+                    required
                     >
                 </div>
                 <div class="col-xs-2">
@@ -20,13 +21,19 @@
                     id="amountLabel"
                     name="amount" 
                     ngModel 
+                    required
                     >
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col-xs-12" style=".btn-space ">
-                    <button class="btn btn-success btn-space" type="submit">Add</button><span
+                    <button 
+                    class="btn btn-success btn-space" 
+                    type="submit"
+                    [disabled]="!f.valid">
+                    Add
+                </button><span
                         style="display:inline-block; width: 3px;"></span>
                     <button class="btn btn-danger btn-space" type="button">Delete</button><span
                         style="display:inline-block; width: 3px;"></span>
