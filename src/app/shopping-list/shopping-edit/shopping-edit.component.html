@@ -33,7 +33,8 @@
                     class="btn btn-success btn-space" 
                     type="submit"
                     [disabled]="!f.valid">
-                    Add
+                    <span *ngIf="!editMode; else updateButton">Add</span>
+                    <ng-template #updateButton>Update</ng-template>
                 </button><span
                         style="display:inline-block; width: 3px;"></span>
                     <button class="btn btn-danger btn-space" type="button">Delete</button><span
