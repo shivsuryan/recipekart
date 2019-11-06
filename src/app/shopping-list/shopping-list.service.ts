@@ -4,19 +4,16 @@ import { Subject } from 'rxjs';
 export class ShoppingListService {
 
     updateShoppingListEvent = new Subject<Ingredient[]>();
+    startEditingItemEvent = new Subject<number>();
 
     private ingredients: Ingredient[] = [];
-
-    // private ingredients: Ingredient[] = [
-    //     new Ingredient('apple', 5),
-    //     new Ingredient('tomatoes', 5),
-    // ];
 
     getIngredients() {
         return this.ingredients.slice();
     }
 
     addIngredient(ingredient: Ingredient) {
+        ingredient.id = this.ingredients.length;
         this.ingredients.push(ingredient);
         this.updateShoppingListEvent.next(this.ingredients.slice());
     }
@@ -24,5 +21,16 @@ export class ShoppingListService {
     addIngredients(ingredientsUp: Ingredient[]) {
         this.ingredients = this.ingredients.concat(ingredientsUp);
         this.updateShoppingListEvent.next(this.ingredients.slice());
+    }
+
+    getIngredient(index: number): Ingredient {
+        return this.ingredients[index];
+    }
+
+    updateIngredient(ingredient: Ingredient) {
+        const editIngredient = this.ingredients[ingredient.id];
+        editIngredient.name = ingredient.name;
+        editIngredient.amount = ingredient.amount;
+
     }
 }

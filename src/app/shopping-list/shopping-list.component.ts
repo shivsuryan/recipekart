@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Ingredient } from '../shared/ingredient,model';
 import { ShoppingListService } from './shopping-list.service';
-import { Subscriber } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-list',
@@ -11,12 +11,17 @@ import { Subscriber } from 'rxjs';
 export class ShoppingListComponent implements OnInit, OnDestroy {
 
   ingredients: Ingredient[];
-  updateShoppingListEventSubscriber: Subscriber<Ingredient>;
+  updateShoppingListEventSubscription: Subscription;
 
   constructor(private shoppingListService: ShoppingListService) {
-    this.shoppingListService.updateShoppingListEvent.subscribe((ingredientsUpdate: Ingredient[]) => {
+    // tslint:disable-next-line: max-line-length
+    this.updateShoppingListEventSubscription = this.shoppingListService.updateShoppingListEvent.subscribe((ingredientsUpdate: Ingredient[]) => {
       this.onSLUpdateEvent(ingredientsUpdate);
     });
+  }
+
+  onStartEditing(index: number) {
+    this.shoppingListService.startEditingItemEvent.next(index);
   }
 
   onSLUpdateEvent(ingredientsUpdate: Ingredient[]) {
@@ -28,6 +33,6 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.updateShoppingListEventSubscriber.unsubscribe();
+    this.updateShoppingListEventSubscription.unsubscribe();
   }
 }
