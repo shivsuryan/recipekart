@@ -1,13 +1,42 @@
 <form>
     <div class="form-group">
-        <label for="recipeName">Name</label>
-        <input type="text" class="form-control" id="recipeName" [value]="recipe.name">
-        <br>
-        <label for="recipeDescription">Description</label>
-        <textarea class="form-control" rows="5" id="recipeDescription"[placeholder]="recipe.description" ([ngModel])="recipe.description"></textarea>
-        <br>
-        <label for="recipeURL">Image</label>
-        <input type="url" class="form-control" id="recipeURL" [placeholder]="recipe.imageUrl" ([ngModel])="recipe.imageUrl">
+        <div class="row">
+            <input type="button" class="btn btn-success" value="Save"><span
+                style="display:inline-block; width: 3px;"></span>
+            <input type="button" class="btn btn-danger" value="Cancel">
+        </div>
+        <div class="row">
+            <label for="recipeName">Name</label>
+            <input type="text" class="form-control" id="recipeName" [value]="recipe.name">
+            <br>
+            <label for="recipeDescription">Description</label>
+            <textarea class="form-control" rows="5" id="recipeDescription" [placeholder]="recipe.description"
+                ([ngModel])="recipe.description"></textarea>
+            <br>
+            <label for="recipeURL">Image URL</label>
+            <input type="url" class="form-control" id="recipeURL" [placeholder]="recipe.imageUrl"
+                ([ngModel])="recipe.imageUrl">
+        </div>
+        <hr>
+        <h4>Ingredients</h4>
+        <div class="row">
+            <div class="col-md-8">
+                    <label for="ingredientName">Name</label>
+            </div>
+            <div class="col-md-4">
+                    <label for="ingredientAmount">Amount</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 align-left">
+                <input type="text" class="form-control">
+            </div>
+            <div class="col-md-2">
+                <input type="number" class="form-control">
+            </div>
+            <div class="col-md-2">
+                <button class="btn mce-btn-small btn-danger">Add</button>
+            </div>
+        </div>
     </div>
-    <button type="submit" class="btn btn-default" (click)="updateRecipe()">Submit</button>
 </form>
