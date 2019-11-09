@@ -27,10 +27,30 @@ export class ShoppingListService {
         return this.ingredients[index];
     }
 
+    getIngredientByName(name: string): Ingredient {
+        return this.ingredients.find((i) => {
+            if (i.name === name) {
+                return i;
+            }
+        });
+    }
+
     updateIngredient(ingredient: Ingredient) {
         const editIngredient = this.ingredients[ingredient.id];
         editIngredient.name = ingredient.name;
         editIngredient.amount = ingredient.amount;
+    }
 
+
+    deleteIngredient(name: string) {
+        this.ingredients.find((i) => {
+            if (i.name === name) {
+                this.ingredients.splice(i.id, 1);
+                return true;
+            } else {
+                return false;
+            }
+        });
+        this.updateShoppingListEvent.next(this.ingredients.slice());
     }
 }
