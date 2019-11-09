@@ -37,9 +37,16 @@
                     <ng-template #updateButton>Update</ng-template>
                 </button><span
                         style="display:inline-block; width: 3px;"></span>
-                    <button class="btn btn-danger btn-space" type="button">Delete</button><span
+                    <button 
+                    class="btn btn-danger btn-space" 
+                    type="button"
+                    >Delete</button><span
                         style="display:inline-block; width: 3px;"></span>
-                    <button class="btn btn-primary btn-space " type="button">Clear</button>
+                    <button 
+                    class="btn btn-primary btn-space " 
+                    type="button"
+                    (click)="onClear()"
+                    >Clear</button>
                 </div>
             </div>
         </form>
