@@ -54,6 +54,7 @@ export class EditRecipeComponent implements OnInit {
 
   onClear() {
     this.myForm.reset();
+    this.router.navigate(['recipes']);
   }
 
   onAddOrEditRecipe() {
