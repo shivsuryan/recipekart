@@ -59,12 +59,14 @@ export class EditRecipeComponent implements OnInit {
   onAddOrEditRecipe() {
     // updating the existing recipe item
     if (this.isEditMode) {
-      const recipe = new Recipe(this.myForm.value.name, this.myForm.value.imageUrl, this.myForm.value.description, this.id);
+      const recipe = new Recipe(this.myForm.value.name, this.myForm.value.description, this.myForm.value.imageUrl, this.id);
       this.recipeService.updateRecipe(recipe);
     } else {
-      const recipe = new Recipe(this.myForm.value.name, this.myForm.value.imageUrl, this.myForm.value.description);
+      const recipe = new Recipe(this.myForm.value.name, this.myForm.value.description, this.myForm.value.imageUrl,);
       this.recipeService.addRecipe(recipe);
     }
+    this.myForm.reset();
+    this.router.navigate(['recipes']);
   }
 
 }
