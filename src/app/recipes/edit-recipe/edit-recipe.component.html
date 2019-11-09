@@ -1,21 +1,22 @@
-<form>
+<form [formGroup]="myForm" (ngSubmit)="onAddOrEditRecipe()">
     <div class="form-group">
         <div class="row">
-            <input type="button" class="btn btn-success" value="Save"><span
+            <input type="submit" class="btn btn-success" value="Save"><span
                 style="display:inline-block; width: 3px;"></span>
-            <input type="button" class="btn btn-danger" value="Cancel">
+            <input type="button" class="btn btn-danger" value="Cancel" (click)="onClear()">
         </div>
+        <br>
         <div class="row">
             <label for="recipeName">Name</label>
-            <input type="text" class="form-control" id="recipeName" [value]="recipe.name">
+            <input type="text" class="form-control" id="recipeName" formControlName="name">
             <br>
             <label for="recipeDescription">Description</label>
-            <textarea class="form-control" rows="5" id="recipeDescription" [placeholder]="recipe.description"
-                ([ngModel])="recipe.description"></textarea>
+            <textarea class="form-control" rows="5" id="recipeDescription" 
+            formControlName="description"></textarea>
             <br>
             <label for="recipeURL">Image URL</label>
-            <input type="url" class="form-control" id="recipeURL" [placeholder]="recipe.imageUrl"
-                ([ngModel])="recipe.imageUrl">
+            <input type="url" class="form-control" id="recipeURL" 
+            formControlName="imageUrl">
         </div>
         <hr>
         <h4>Ingredients</h4>
