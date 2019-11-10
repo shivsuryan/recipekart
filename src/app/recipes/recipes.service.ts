@@ -9,18 +9,18 @@ export class RecipeService {
 
     private recipes: Recipe[] = [
         new Recipe(
-            'TestRecipe1',
-            'Description 01',
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwtcXb2aEp1w1AtTWeAO8eeNtd9a-jkEyZhRmldIBE3PZAecY7ig&s',
+            'BreadwithEgg',
+            'Healthy brown bread and super food egg.',
+            'https://cdn.pixabay.com/photo/2014/09/15/16/53/tomatoes-447170_960_720.jpg',
             1,
-            [new Ingredient('Ingredient01', 1), new Ingredient('Ingredient02', 2)]
+            [new Ingredient('Brown Bread', 1), new Ingredient('Egg Boiled', 1), new Ingredient('Cheese', 1), new Ingredient('Spinach', 2)]
         ),
         new Recipe(
-            'TestRecipe2',
-            'Description 02',
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwtcXb2aEp1w1AtTWeAO8eeNtd9a-jkEyZhRmldIBE3PZAecY7ig&s',
+            'Pasta with Green Sauce',
+            'Sumptous pasta with spicy green sauce.',
+            'https://cdn.pixabay.com/photo/2016/11/23/18/31/close-up-1854245_960_720.jpg',
             2,
-            [new Ingredient('Ingredient03', 3), new Ingredient('Ingredient04', 4)]
+            [new Ingredient('Pasta', 25), new Ingredient('Green Sauce', 2)]
         )
     ];
 
