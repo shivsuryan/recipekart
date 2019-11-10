@@ -15,6 +15,7 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { EditRecipeComponent } from './recipes/edit-recipe/edit-recipe.component';
+import { RecipeService } from './recipes/recipes.service';
 
 
 
@@ -38,7 +39,7 @@ import { EditRecipeComponent } from './recipes/edit-recipe/edit-recipe.component
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [ShoppingListService],
+  providers: [ShoppingListService, RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
