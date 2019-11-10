@@ -70,7 +70,12 @@ export class EditRecipeComponent implements OnInit {
   onAddOrEditRecipe() {
     // updating the existing recipe item
     if (this.isEditMode) {
-      const recipe = new Recipe(this.myForm.value.name, this.myForm.value.description, this.myForm.value.imageUrl, this.id);
+      const recipe = new Recipe(
+        this.myForm.value.name,
+        this.myForm.value.description,
+        this.myForm.value.imageUrl,
+        this.id,
+        this.myForm.value.ingredients);
       this.recipeService.updateRecipe(recipe);
     } else {
       const recipe = new Recipe(this.myForm.value.name, this.myForm.value.description, this.myForm.value.imageUrl);
@@ -86,8 +91,12 @@ export class EditRecipeComponent implements OnInit {
 
   onAddIngredient() {
     (<FormArray>this.myForm.get('ingredients')).push(new FormGroup({
-      name: new FormControl('',Validators.required),
-      amount: new FormControl('',[Validators.required, Validators.pattern('^[1-9]+[0-9]*$')])
+      name: new FormControl('', Validators.required),
+      amount: new FormControl('', [Validators.required, Validators.pattern('^[1-9]+[0-9]*$')])
     }));
+  }
+
+  onDeleteIngredient(i) {
+    (<FormArray>this.myForm.get('ingredients')).removeAt(i);
   }
 }

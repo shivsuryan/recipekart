@@ -43,6 +43,7 @@ export class RecipeService {
                 r.name = recipe.name;
                 r.imageUrl = recipe.imageUrl;
                 r.description = recipe.description;
+                r.ingredients = recipe.ingredients;
             }
         });
     }
