@@ -25,8 +25,6 @@ export class RecipeDetailComponent implements OnInit {
       this.id = params['id'];
       this.recipe = this.recipeService.getRecipe(this.id);
     });
-    // this.recipe = this.recipeService.getRecipe
-    // (parseInt(this.activedRoute.snapshot.params['id']));
   }
 
   addIngToSL() {
@@ -34,6 +32,11 @@ export class RecipeDetailComponent implements OnInit {
   }
   editRecipe() {
     this.router.navigate(['edit'], { relativeTo: this.activedRoute });
+  }
+
+  deleteRecipe() {
+    this.recipeService.deleteRecipe(this.id);
+    this.router.navigate(['recipes']);
   }
 
 }

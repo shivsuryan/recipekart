@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 export class RecipeService {
 
     recipeSelectedEvent = new Subject<Recipe>();
+    recipeListUpdatedEvent = new Subject<boolean>();
 
     private recipes: Recipe[] = [
         new Recipe(
@@ -49,7 +50,8 @@ export class RecipeService {
     }
 
     deleteRecipe(id: number) {
-        this.recipes = this.recipes.slice(id, 1);
+        this.recipes = this.recipes.splice(id, 1);
+        this.recipeListUpdatedEvent.next(true);
     }
 
 }
