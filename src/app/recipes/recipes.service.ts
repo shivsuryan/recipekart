@@ -34,7 +34,7 @@ export class RecipeService {
     }
 
     addRecipe(recipe: Recipe) {
-        recipe.id = this.recipes.length;
+        recipe.id = this.recipes.length + 1;
         this.recipes.push(recipe);
         this.recipeListUpdatedEvent.next(true);
     }
