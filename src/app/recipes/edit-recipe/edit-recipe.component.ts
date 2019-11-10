@@ -78,7 +78,7 @@ export class EditRecipeComponent implements OnInit {
         this.myForm.value.ingredients);
       this.recipeService.updateRecipe(recipe);
     } else {
-      const recipe = new Recipe(this.myForm.value.name, this.myForm.value.description, this.myForm.value.imageUrl);
+      const recipe = new Recipe(this.myForm.value.name, this.myForm.value.description, this.myForm.value.imageUrl,-1,this.myForm.value.ingredients);
       this.recipeService.addRecipe(recipe);
     }
     this.myForm.reset();

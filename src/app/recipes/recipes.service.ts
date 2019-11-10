@@ -36,6 +36,7 @@ export class RecipeService {
     addRecipe(recipe: Recipe) {
         recipe.id = this.recipes.length;
         this.recipes.push(recipe);
+        this.recipeListUpdatedEvent.next(true);
     }
 
     updateRecipe(recipe: Recipe): Recipe {

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <input type="submit" class="btn btn-success pull-left" value="Save" [disabled]="!myForm.valid"><span
-                    style="display:inline-block; width: 3px;" ></span>
+                    style="display:inline-block; width: 3px;"></span>
                 <input type="button" class="btn btn-danger" value="Cancel" (click)="onClear()">
             </div>
         </div>
@@ -29,7 +29,10 @@
                     <label for="recipeURL">Image URL</label>
                 </div>
                 <div class="row">
-                    <input type="url" class="form-control" id="recipeURL" formControlName="imageUrl">
+                    <input type="url" class="form-control" id="recipeURL" formControlName="imageUrl" #ImageUrl>
+                </div>
+                <div class="row">
+                    <img [src]="ImageUrl.value" class="img-responsive">
                 </div>
             </div>
         </div>
@@ -60,7 +63,8 @@
                 <hr>
                 <div class="row">
                     <div class="col-xs-12">
-                        <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add Ingredient</button>
+                        <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add
+                            Ingredient</button>
                     </div>
                 </div>
             </div>
