@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { EditRecipeComponent } from './recipes/edit-recipe/edit-recipe.component';
 import { RecipeService } from './recipes/recipes.service';
+import { AuthComponent } from './auth/auth.component';
 
 
 
@@ -31,7 +32,8 @@ import { RecipeService } from './recipes/recipes.service';
     RecipeItemComponent,
     DropdownDirective,
     RecipeStartComponent,
-    EditRecipeComponent
+    EditRecipeComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
