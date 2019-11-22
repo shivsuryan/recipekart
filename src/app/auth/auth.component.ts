@@ -41,14 +41,16 @@ export class AuthComponent {
         } else{
             console.log('Login request');
             const formValue = form.value;
-            this.authService.signUp(formValue.email, formValue.passowrd).subscribe(response => {
+            this.authService.signIn(formValue.email, formValue.passowrd).subscribe(response => {
                 console.log(response);
                 this.isLoginMode = false;
                 this.isLoading = false;
-            }, error => {
-                console.log(error);
+            }, errorMeesage => {
+                console.log(errorMeesage);
                 this.isLoginMode = false;
                 this.isLoading = false;
+                this.isError = true;
+                this.errorMessage = errorMeesage;
             });
         }
     }
