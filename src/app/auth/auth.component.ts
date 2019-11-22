@@ -11,6 +11,8 @@ export class AuthComponent {
 
     isLoginMode = false;
     isLoading = false;
+    isError = false;
+    errorMessage = 'An unknown error occured';
 
     constructor(private authService: AuthService){
     }
@@ -28,10 +30,13 @@ export class AuthComponent {
                 console.log(response);
                 this.isLoginMode = false;
                 this.isLoading = false;
-            }, errorResponse => {
-                console.log(errorResponse.error);
+            }, errorMessage => {
+                console.log(errorMessage);
                 this.isLoginMode = false;
                 this.isLoading = false;
+                this.isError = true;
+                this.errorMessage = errorMessage;
+
             });
         } else{
             console.log('Login request');

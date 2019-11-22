@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SignUpResponse } from './response.model';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -16,7 +18,17 @@ export class AuthService {
             email: emailId,
             password: passWord,
             returnSecureToken: true
-        });
+        }).pipe(catchError(errorResponse => {
+            let errorMessage = 'An unknown error occured';
+            if (!errorResponse.error || !errorResponse.error.error) {
+                return throwError(errorMessage);
+            }
+            switch (errorResponse.error.error.message) {
+                case 'EMAIL_EXISTS':
+                errorMessage = 'Email already exists';
+            }
+            return throwError(errorMessage);
+        }));
     }
 
     login(emailId: string, passWord: string) {

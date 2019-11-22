@@ -1,6 +1,12 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-md-6 col-md-offset-3">
+            <div style="text-align: center;" *ngIf="isLoading">
+                <app-loading-symbol></app-loading-symbol>
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="isError && !isLoading">
+                    {{ errorMessage }}
+            </div>
             <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
                 <div class="form-group">
                     <label for="email">E-Mail</label>
@@ -18,11 +24,6 @@
                         (click)="onSwitchMode()">{{isLoginMode ? 'Switch To Sign Up' : 'Switch To Login'}}</button>
                 </div>
             </form>
-        </div>
-    </div>
-    <div class="row" *ngIf="isLoading">
-        <div class="col-xs-12 col-md-6 col-md-offset-3" style="text-align: center;">
-            <app-loading-symbol></app-loading-symbol>
         </div>
     </div>
 </div>
