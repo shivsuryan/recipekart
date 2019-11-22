@@ -17,6 +17,8 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { EditRecipeComponent } from './recipes/edit-recipe/edit-recipe.component';
 import { RecipeService } from './recipes/recipes.service';
 import { AuthComponent } from './auth/auth.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LoadingSymbolComponent } from './loading-symbol/loading-symbol.component';
 
 
 
@@ -33,13 +35,15 @@ import { AuthComponent } from './auth/auth.component';
     DropdownDirective,
     RecipeStartComponent,
     EditRecipeComponent,
-    AuthComponent
+    AuthComponent,
+    LoadingSymbolComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [ShoppingListService, RecipeService],
   bootstrap: [AppComponent]
