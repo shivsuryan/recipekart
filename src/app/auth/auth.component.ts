@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-auth',
@@ -16,7 +17,7 @@ export class AuthComponent {
     errorMessage = 'An unknown error occured';
     authObservable: Observable<any>;
 
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService, private router: Router) {
     }
 
     onSwitchMode() {
@@ -35,9 +36,9 @@ export class AuthComponent {
         }
 
         this.authObservable.subscribe(response => {
-            console.log(response);
             this.isLoginMode = false;
             this.isLoading = false;
+            this.router.navigate(['/recipes']);
         }, errorMessage => {
             console.log(errorMessage);
             this.isLoginMode = false;

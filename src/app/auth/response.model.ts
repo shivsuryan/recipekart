@@ -1,4 +1,4 @@
-export interface SignUpResponse {
+export interface AuthResponseData {
     idToken: string;
     email: string;
     refreshToken: string;

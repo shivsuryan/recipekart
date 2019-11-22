@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SignUpResponse } from './response.model';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { AuthResponseData } from './response.model';
+import { catchError, tap } from 'rxjs/operators';
+import { throwError, Subject } from 'rxjs';
+import { User } from './user.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -10,13 +11,14 @@ export class AuthService {
     private readonly signUpUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDVEzWZUkPVwtChk1NpvG7ewlNJzDs8CFE';
     // tslint:disable-next-line: max-line-length
     private readonly signinUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDVEzWZUkPVwtChk1NpvG7ewlNJzDs8CFE';
+    user = new Subject<User>();
 
     constructor(private httpClient: HttpClient) {
 
     }
 
     signUp(emailId: string, passWord: string) {
-        return this.httpClient.post<SignUpResponse>(this.signUpUrl, {
+        return this.httpClient.post<AuthResponseData>(this.signUpUrl, {
             email: emailId,
             password: passWord,
             returnSecureToken: true
@@ -34,7 +36,7 @@ export class AuthService {
     }
 
     signIn(emailId: string, passWord: string) {
-        return this.httpClient.post<SignUpResponse>(this.signinUrl, {
+        return this.httpClient.post<AuthResponseData>(this.signinUrl, {
             email: emailId,
             password: passWord,
             returnSecureToken: true
@@ -49,6 +51,15 @@ export class AuthService {
                     errorMessage = 'INVALID PASSWORD entered.';
             }
             return throwError(errorMessage);
+        }), tap(responseData => {
+            const expirationDate = new Date(new Date().getTime() + +responseData.expiresIn * 1000);
+            const userObj = new User(responseData.email,
+                responseData.localId,
+                responseData.idToken,
+                expirationDate);
+            this.user.next(userObj);
+            console.log('User logged in.');
+            console.log(userObj);
         }));
     }
 }
