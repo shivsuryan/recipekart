@@ -60,13 +60,32 @@ export class AuthService {
                 expirationDate);
             this.user.next(userObj);
             this.userIn = userObj;
+            localStorage.setItem('userData', JSON.stringify(userObj));
             console.log('User logged in.');
             console.log(userObj);
         }));
     }
 
-    logOut(){
+    autoLogin() {
+        const userData: {
+            email: string;
+            id: string;
+            _token: string;
+            _tokenExpiryDate: string
+        } = JSON.parse(localStorage.getItem('userData'));
+        if (!userData) {
+            return;
+        }
+        const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpiryDate));
+        if (loadedUser.token) {
+            this.userIn = loadedUser;
+            this.user.next(loadedUser);
+        }
+    }
+
+    logOut() {
         this.userIn = null;
         this.user.next(null);
+        localStorage.removeItem('userData');
     }
 }
