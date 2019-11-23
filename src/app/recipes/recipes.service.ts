@@ -7,7 +7,8 @@ export class RecipeService {
     recipeSelectedEvent = new Subject<Recipe>();
     recipeListUpdatedEvent = new Subject<boolean>();
 
-    private recipes: Recipe[] = [
+    private recipes: Recipe[] = [];
+    /*[
         new Recipe(
             'BreadwithEgg',
             'Healthy brown bread and super food egg.',
@@ -22,7 +23,12 @@ export class RecipeService {
             2,
             [new Ingredient('Pasta', 25), new Ingredient('Green Sauce', 2)]
         )
-    ];
+    ];*/
+
+    setRecipes(recipes: Recipe[]){
+        this.recipes = recipes;
+        this.recipeListUpdatedEvent.next(true);
+    }
 
     getRecipes() {
         // returning a copy of array object

@@ -2,6 +2,7 @@ import { Component, OnInit, Output, OnDestroy } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
+import { DataStorageService } from '../shared/data-storage-service';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   @Output() loadPageEvent = new EventEmitter<{ loadPage: string }>();
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private dataStorageService: DataStorageService) { }
 
   ngOnInit() {
     this.loadPageEvent.emit({ loadPage: 'recipes' });
@@ -36,6 +37,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   loadPage(event: { loadPage: string }) {
     this.loadPageEvent.emit(event);
+  }
+
+  onSaveData() {
+    this.dataStorageService.onSaveData();
+  }
+
+  onFetchData() {
+    this.dataStorageService.onFetchData();
   }
 
 }
