@@ -64,4 +64,9 @@ export class AuthService {
             console.log(userObj);
         }));
     }
+
+    logOut(){
+        this.userIn = null;
+        this.user.next(null);
+    }
 }
