@@ -22,7 +22,6 @@ import { LoadingSymbolComponent } from './loading-symbol/loading-symbol.componen
 import { HttpInterceptorService } from './auth/httpInterceptor.service';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +43,8 @@ import { HttpInterceptorService } from './auth/httpInterceptor.service';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    timers
   ],
   providers: [ShoppingListService, RecipeService, { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }],
   bootstrap: [AppComponent]
