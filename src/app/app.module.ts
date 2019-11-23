@@ -17,8 +17,9 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { EditRecipeComponent } from './recipes/edit-recipe/edit-recipe.component';
 import { RecipeService } from './recipes/recipes.service';
 import { AuthComponent } from './auth/auth.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingSymbolComponent } from './loading-symbol/loading-symbol.component';
+import { HttpInterceptorService } from './auth/httpInterceptor.service';
 
 
 
@@ -45,7 +46,7 @@ import { LoadingSymbolComponent } from './loading-symbol/loading-symbol.componen
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ShoppingListService, RecipeService],
+  providers: [ShoppingListService, RecipeService, { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
