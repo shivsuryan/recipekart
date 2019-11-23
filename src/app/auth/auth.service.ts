@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthResponseData } from './response.model';
 import { catchError, tap } from 'rxjs/operators';
-import { throwError, Subject } from 'rxjs';
+import { throwError, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
 
 @Injectable({ providedIn: 'root' })
@@ -11,7 +11,8 @@ export class AuthService {
     private readonly signUpUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDVEzWZUkPVwtChk1NpvG7ewlNJzDs8CFE';
     // tslint:disable-next-line: max-line-length
     private readonly signinUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDVEzWZUkPVwtChk1NpvG7ewlNJzDs8CFE';
-    user = new Subject<User>();
+    user = new BehaviorSubject<User>(null);
+    userIn: User = null;
 
     constructor(private httpClient: HttpClient) {
 
@@ -58,6 +59,7 @@ export class AuthService {
                 responseData.idToken,
                 expirationDate);
             this.user.next(userObj);
+            this.userIn = userObj;
             console.log('User logged in.');
             console.log(userObj);
         }));
